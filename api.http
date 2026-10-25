@@ -1,0 +1,129 @@
+### Variables
+@baseUrl = http://localhost:5000/api
+@adminEmail = admin@example.com
+@memberEmail = member@example.com
+@password = password123
+
+### 1. Register Admin
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Admin User",
+  "email": "{{adminEmail}}",
+  "password": "{{password}}",
+  "role": "admin"
+}
+
+### 2. Register Member
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "name": "Member User",
+  "email": "{{memberEmail}}",
+  "password": "{{password}}",
+  "role": "member"
+}
+
+### 3. Login Admin
+# @name loginAdmin
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{adminEmail}}",
+  "password": "{{password}}"
+}
+
+### Store Admin Token
+@adminToken = {{loginAdmin.response.body.accessToken}}
+
+### 4. Login Member
+# @name loginMember
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "{{memberEmail}}",
+  "password": "{{password}}"
+}
+
+### Store Member Token
+@memberToken = {{loginMember.response.body.accessToken}}
+
+### 5. VERIFY: Member gets 403 creating a team
+POST {{baseUrl}}/teams
+Authorization: Bearer {{memberToken}}
+Content-Type: application/json
+
+{
+  "name": "Member Team",
+  "description": "Should fail with 403"
+}
+
+### 6. Admin creates a team (201 Created)
+# @name createTeam
+POST {{baseUrl}}/teams
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "name": "Engineering Team",
+  "description": "Product engineering"
+}
+
+@teamId = {{createTeam.response.body._id}}
+
+### 7. VERIFY: Non-member gets 403 on team's tasks
+GET {{baseUrl}}/teams/{{teamId}}/tasks
+Authorization: Bearer {{memberToken}}
+
+### 8. Admin invites Member to team
+POST {{baseUrl}}/teams/{{teamId}}/invite
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "email": "{{memberEmail}}"
+}
+
+### 9. Create a task in the team
+# @name createTask
+POST {{baseUrl}}/teams/{{teamId}}/tasks
+Authorization: Bearer {{adminToken}}
+Content-Type: application/json
+
+{
+  "title": "Design API endpoints",
+  "description": "Define routes and middleware",
+  "status": "pending"
+}
+
+@taskId = {{createTask.response.body._id}}
+
+### 10. VERIFY: Changing task status logs formatted activity
+PATCH {{baseUrl}}/tasks/{{taskId}}
+Authorization: Bearer {{memberToken}}
+Content-Type: application/json
+
+{
+  "status": "in_progress"
+}
+
+### 11. View Team Activity (Verifies formatted status activity message)
+GET {{baseUrl}}/teams/{{teamId}}/activity
+Authorization: Bearer {{memberToken}}
+
+### 12. Add a comment
+POST {{baseUrl}}/tasks/{{taskId}}/comments
+Authorization: Bearer {{memberToken}}
+Content-Type: application/json
+
+{
+  "text": "Status changed to In Progress, working on it now."
+}
+
+### 13. Get comments
+GET {{baseUrl}}/tasks/{{taskId}}/comments
+Authorization: Bearer {{memberToken}}
