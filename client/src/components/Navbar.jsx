@@ -14,7 +14,7 @@ const Navbar = () => {
   if (!user) return null;
 
   return (
-    <nav className="bg-white border-b border-gray-200 px-6 py-3.5 shadow-sm">
+    <nav className="bg-white border-b border-slate-200 px-6 py-3.5 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/dashboard" className="text-xl font-bold text-indigo-600 tracking-tight">
           Team Task Tracker

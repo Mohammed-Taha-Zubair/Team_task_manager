@@ -11,7 +11,7 @@ import TaskDetail from './pages/TaskDetail';
 
 const AppLayout = () => {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-slate-100/75 flex flex-col">
       <Navbar />
       <main className="flex-1">
         <Outlet />
