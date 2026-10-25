@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const Team = require("../models/Team");
 const User = require("../models/User");
 const Task = require("../models/Task");
-const Activity = require("../models/Activity").default;
+const Activity = require("../models/Activity");
 const logActivity = require("../utils/activity");
 const {
   authenticate,

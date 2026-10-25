@@ -1,6 +1,4 @@
-/** @format */
-
-const Activity = require("../models/Activity").default;
+const Activity = require("../models/Activity");
 
 const logActivity = async (teamId, userId, message, taskId = null) => {
   try {
