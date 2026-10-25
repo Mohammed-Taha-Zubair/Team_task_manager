@@ -35,6 +35,7 @@ const App = () => {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/teams/:id" element={<TeamDetail />} />
               <Route path="/teams/:id/tasks/:taskId" element={<TaskDetail />} />
+              <Route path="/tasks/:taskId" element={<TaskDetail />} />
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
             </Route>
           </Route>

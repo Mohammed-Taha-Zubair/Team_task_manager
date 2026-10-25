@@ -31,6 +31,43 @@ Team_task_manager/
 │   ├── .env.example
 │   ├── index.js
 │   └── package.json
+├── client/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── common/
+│   │   │   │   └── StatusBadge.jsx
+│   │   │   ├── dashboard/
+│   │   │   │   ├── CreateTeamModal.jsx
+│   │   │   │   └── TeamCard.jsx
+│   │   │   ├── team/
+│   │   │   │   ├── ActivityTimeline.jsx
+│   │   │   │   ├── NewTaskModal.jsx
+│   │   │   │   ├── TaskCard.jsx
+│   │   │   │   ├── TaskFilterTabs.jsx
+│   │   │   │   └── TeamMembersList.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   └── ProtectedRoute.jsx
+│   │   ├── context/
+│   │   │   └── AuthContext.jsx
+│   │   ├── pages/
+│   │   │   ├── Dashboard.jsx
+│   │   │   ├── Login.jsx
+│   │   │   ├── Register.jsx
+│   │   │   ├── TaskDetail.jsx
+│   │   │   └── TeamDetail.jsx
+│   │   ├── utils/
+│   │   │   └── date.js
+│   │   ├── api.js
+│   │   ├── App.jsx
+│   │   ├── index.css
+│   │   └── main.jsx
+│   ├── .env
+│   ├── .env.example
+│   ├── index.html
+│   ├── package.json
+│   ├── postcss.config.js
+│   ├── tailwind.config.js
+│   └── vite.config.js
 ├── api.http
 └── README.md
 ```
@@ -47,6 +84,14 @@ cd server
 npm install
 npm run dev # or npm start
 ```
+
+### 3. Frontend Setup
+```bash
+cd client
+npm install
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## API Endpoints
 

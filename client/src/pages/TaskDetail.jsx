@@ -8,8 +8,8 @@ const TaskDetail = () => {
     <div className="max-w-7xl mx-auto px-6 py-8">
       <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
         <div className="mb-4">
-          <Link to={`/teams/${id}`} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
-            &larr; Back to Team
+          <Link to={id ? `/teams/${id}` : '/dashboard'} className="text-sm font-medium text-indigo-600 hover:text-indigo-500">
+            &larr; {id ? 'Back to Team' : 'Back to Dashboard'}
           </Link>
         </div>
         <h1 className="text-2xl font-bold text-gray-900">Task Details</h1>
