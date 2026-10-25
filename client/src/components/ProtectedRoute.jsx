@@ -7,7 +7,7 @@ const ProtectedRoute = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-slate-100/75">
         <div className="text-gray-500 text-sm font-medium">Loading session...</div>
       </div>
     );
