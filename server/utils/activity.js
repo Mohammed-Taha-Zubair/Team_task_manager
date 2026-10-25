@@ -1,4 +1,6 @@
-const Activity = require('../models/Activity');
+/** @format */
+
+const Activity = require("../models/Activity").default;
 
 const logActivity = async (teamId, userId, message, taskId = null) => {
   try {
@@ -9,7 +11,7 @@ const logActivity = async (teamId, userId, message, taskId = null) => {
       task: taskId,
     });
   } catch (error) {
-    console.error('Failed to log activity:', error);
+    console.error("Failed to log activity:", error);
   }
 };
 

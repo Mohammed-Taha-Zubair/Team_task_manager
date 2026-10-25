@@ -1,19 +1,21 @@
-const mongoose = require('mongoose');
+/** @format */
+
+const mongoose = require("mongoose");
 
 const activitySchema = new mongoose.Schema({
   team: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Team',
+    ref: "Team",
     required: true,
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
   task: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Task',
+    ref: "Task",
     default: null,
   },
   message: {
@@ -27,4 +29,4 @@ const activitySchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('Activity', activitySchema);
+module.exports = mongoose.model("Activity", activitySchema);
